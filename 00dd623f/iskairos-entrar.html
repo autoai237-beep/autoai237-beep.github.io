@@ -1,0 +1,782 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>ISKAIROS | Aprende a vender por internet desde joven</title>
+  <meta name="theme-color" content="#070A0E">
+  <meta name="description" content="ISKAIROS: Sin inventario, sin experiencia y aunque te dé pena vender. Te enseñamos paso a paso con el método CÓDIGO CRUX.">
+  <link rel="icon" href="https://iskairos.com/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="48x48" href="https://iskairos.com/favicon-48.png">
+  <link rel="apple-touch-icon" href="https://iskairos.com/apple-touch-icon.png">
+  <link rel="manifest" href="https://iskairos.com/manifest.webmanifest">
+  <link rel="preconnect" href="https://iskairos.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #070A0E;
+      --ink-2: #0A0F14;
+      --card: #10151C;
+      --card-2: #141B23;
+      --line: #1E2630;
+      --line-2: #2A3440;
+      --accent: #22CBEA;
+      --accent-2: #7FE8FA;
+      --accent-ink: #04131A;
+      --soft: #C9D2DA;
+      --muted: #9AA6B2;
+      --error-bg: #2A1518;
+      --error: #FF9C9C;
+      --ok-bg: #0E1A20;
+      --font-display: 'Sora', system-ui, sans-serif;
+      --font-body: 'DM Sans', system-ui, sans-serif;
+      --ease: cubic-bezier(.22, 1, .36, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html { -webkit-text-size-adjust: 100%; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      min-height: 100svh;
+      background: var(--ink);
+      color: #fff;
+      font-family: var(--font-body);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: -20vmax;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(38vmax 38vmax at 16% 18%, rgba(34, 203, 234, .16), transparent 62%),
+        radial-gradient(34vmax 34vmax at 84% 82%, rgba(45, 120, 170, .13), transparent 66%);
+      opacity: 0;
+      animation: ambient 1.8s .1s var(--ease) forwards;
+    }
+
+    ::selection { background: rgba(34, 203, 234, .3); color: #fff; }
+
+    a { color: inherit; }
+
+    .skip {
+      position: absolute;
+      left: 16px;
+      top: -80px;
+      z-index: 20;
+      padding: 10px 16px;
+      border-radius: 10px;
+      background: var(--accent);
+      color: var(--accent-ink);
+      font-weight: 700;
+      text-decoration: none;
+      transition: top .2s var(--ease);
+    }
+    .skip:focus { top: 16px; }
+
+    .auth {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 100vh;
+      min-height: 100svh;
+    }
+
+    /* ---------- Panel de marca ---------- */
+    .brand-panel {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 100vh;
+      min-height: 100svh;
+      padding: 44px 56px;
+      border-right: 1px solid var(--line);
+      background:
+        radial-gradient(58% 46% at 18% 100%, rgba(34, 203, 234, .12), transparent 70%),
+        linear-gradient(180deg, #0A0F14 0%, #070A0E 100%);
+      overflow: hidden;
+    }
+
+    .brand-panel::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, .035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, .035) 1px, transparent 1px);
+      background-size: 72px 72px;
+      -webkit-mask-image: radial-gradient(72% 64% at 26% 74%, #000 0%, transparent 100%);
+      mask-image: radial-gradient(72% 64% at 26% 74%, #000 0%, transparent 100%);
+    }
+
+    .watermark {
+      position: absolute;
+      top: -72px;
+      right: -86px;
+      z-index: 0;
+      width: 340px;
+      height: 447px;
+      background: url("https://iskairos.com/assets/logo-CtEBM7rT.png") center / contain no-repeat;
+      opacity: .06;
+      transform: rotate(8deg);
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .brand-fx { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      will-change: transform;
+    }
+    .orb-1 {
+      width: 360px;
+      height: 360px;
+      left: -140px;
+      bottom: 90px;
+      background: radial-gradient(circle, rgba(34, 203, 234, .18), transparent 65%);
+      animation: float-a 17s ease-in-out infinite alternate;
+    }
+    .orb-2 {
+      width: 240px;
+      height: 240px;
+      right: 40px;
+      top: 28%;
+      background: radial-gradient(circle, rgba(127, 232, 250, .1), transparent 66%);
+      animation: float-b 21s ease-in-out infinite alternate;
+    }
+
+    .brand-top,
+    .brand-main { position: relative; z-index: 1; }
+
+    .brand-top {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      align-self: flex-start;
+      color: #fff;
+      text-decoration: none;
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: .16em;
+      animation: rise .7s .05s var(--ease) both;
+    }
+    .brand-top img { display: block; width: 20px; height: auto; }
+    .brand-top:hover { color: var(--accent-2); }
+    .brand-top:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 6px;
+      border-radius: 6px;
+    }
+
+    .brand-main { max-width: 460px; padding-bottom: 22px; }
+
+    .brand-logo-wrap {
+      position: relative;
+      width: 72px;
+      height: 95px;
+      margin-bottom: 30px;
+      animation: rise .8s .14s var(--ease) both;
+    }
+    .brand-logo-wrap::before {
+      content: "";
+      position: absolute;
+      inset: -84px -104px;
+      z-index: -1;
+      background: radial-gradient(circle, rgba(34, 203, 234, .17), transparent 64%);
+    }
+    .brand-logo-wrap img {
+      position: relative;
+      z-index: 1;
+      display: block;
+      width: 72px;
+      height: 95px;
+      filter: drop-shadow(0 0 20px rgba(34, 203, 234, .35));
+    }
+
+    .brand-title {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: clamp(40px, 4.2vw, 58px);
+      font-weight: 800;
+      line-height: 1.03;
+      letter-spacing: -.035em;
+      animation: rise .85s .22s var(--ease) both;
+    }
+    .brand-title em {
+      position: relative;
+      color: var(--accent);
+      font-style: normal;
+      white-space: nowrap;
+    }
+    .brand-title em::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: .02em;
+      height: 3px;
+      border-radius: 99px;
+      background: linear-gradient(90deg, var(--accent), transparent 92%);
+      transform: scaleX(0);
+      transform-origin: 0 50%;
+      animation: draw .9s .85s var(--ease) forwards;
+    }
+
+    .brand-sub {
+      max-width: 380px;
+      margin: 20px 0 0;
+      font-size: 17px;
+      line-height: 1.6;
+      color: var(--soft);
+      animation: rise .85s .3s var(--ease) both;
+    }
+
+    /* ---------- Formulario ---------- */
+    .form-panel {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      min-height: 100svh;
+      overflow: hidden;
+    }
+    .form-panel::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 560px;
+      height: 560px;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      background: radial-gradient(circle, rgba(34, 203, 234, .08), transparent 66%);
+    }
+
+    .form-top {
+      position: relative;
+      z-index: 1;
+      padding: 30px 32px 0;
+      animation: fade .7s .1s var(--ease) both;
+    }
+
+    .lockup {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: #fff;
+      text-decoration: none;
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: .16em;
+    }
+    .lockup img { display: block; width: 20px; height: auto; }
+    .lockup:hover { color: var(--accent-2); }
+    .lockup:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 6px;
+      border-radius: 6px;
+    }
+
+    .form-center {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex: 1;
+      align-items: center;
+      justify-content: center;
+      padding: 28px 32px 44px;
+    }
+
+    .form-shell {
+      position: relative;
+      width: 100%;
+      max-width: 430px;
+      padding: 34px;
+      border: 1px solid rgba(42, 52, 64, .9);
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(20, 27, 35, .88), rgba(9, 13, 18, .93));
+      box-shadow:
+        0 34px 80px -44px rgba(0, 0, 0, .95),
+        inset 0 1px 0 rgba(255, 255, 255, .05);
+      overflow: hidden;
+      animation: rise .85s .16s var(--ease) both;
+    }
+    .form-shell::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(127, 232, 250, .55), transparent);
+      opacity: .65;
+      pointer-events: none;
+    }
+
+    .form-accent {
+      display: block;
+      width: 44px;
+      height: 3px;
+      margin-bottom: 20px;
+      border-radius: 99px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      transform: scaleX(0);
+      transform-origin: 0 50%;
+      animation: draw .8s .55s var(--ease) forwards;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -.025em;
+      animation: rise .7s .24s var(--ease) both;
+    }
+
+    .form-sub {
+      margin: 0 0 28px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.55;
+      animation: rise .7s .3s var(--ease) both;
+    }
+
+    .form { display: flex; flex-direction: column; gap: 15px; }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 500;
+      animation: rise .7s var(--ease) both;
+    }
+    .field:nth-of-type(1) { animation-delay: .36s; }
+    .field:nth-of-type(2) { animation-delay: .42s; }
+
+    .field:focus-within { color: var(--accent-2); }
+    .field span { transition: color .2s ease; }
+
+    .field input {
+      width: 100%;
+      height: 52px;
+      padding: 0 16px;
+      border: 1px solid var(--line-2);
+      border-radius: 14px;
+      background: rgba(7, 10, 14, .72);
+      color: #fff;
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.4;
+      outline: none;
+      transition: border-color .2s ease, box-shadow .2s ease, background-color .2s ease;
+    }
+    .field input:hover:not(:focus) { border-color: #374454; }
+    .field input:focus {
+      border-color: var(--accent);
+      background: rgba(4, 10, 14, .92);
+      box-shadow: 0 0 0 4px rgba(34, 203, 234, .13);
+    }
+    .field input:-webkit-autofill,
+    .field input:-webkit-autofill:hover,
+    .field input:-webkit-autofill:focus {
+      -webkit-text-fill-color: #fff;
+      caret-color: #fff;
+      -webkit-box-shadow: 0 0 0 1000px #0A0F14 inset;
+      box-shadow: 0 0 0 1000px #0A0F14 inset;
+      transition: background-color 9999s ease-out;
+    }
+
+    .msg {
+      border-radius: 12px;
+      padding: 10px 14px;
+      font-size: 14px;
+      line-height: 1.45;
+      animation: msg-in .34s var(--ease) both;
+    }
+    .msg-error { background: var(--error-bg); color: var(--error); }
+    .msg-error.tremble { animation: msg-in .34s var(--ease) both, tremble .34s .08s ease; }
+    .msg-ok { background: var(--ok-bg); color: var(--accent); }
+
+    .btn-primary {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      height: 54px;
+      margin-top: 3px;
+      border: 0;
+      border-radius: 14px;
+      background: linear-gradient(180deg, #2BD6F5, #1FC0DE);
+      color: var(--accent-ink);
+      font-family: var(--font-display);
+      font-size: 17px;
+      font-weight: 700;
+      cursor: pointer;
+      overflow: hidden;
+      box-shadow:
+        0 16px 36px -20px rgba(34, 203, 234, .8),
+        inset 0 1px 0 rgba(255, 255, 255, .3);
+      transition: transform .18s var(--ease), box-shadow .25s ease, filter .2s ease;
+      animation: rise .7s .48s var(--ease) both;
+    }
+    .btn-primary::after {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      background: linear-gradient(110deg, transparent 32%, rgba(255, 255, 255, .38) 50%, transparent 68%);
+      transform: translateX(-135%);
+      transition: transform .7s var(--ease);
+      pointer-events: none;
+    }
+    @media (hover: hover) and (pointer: fine) {
+      .btn-primary:hover:not(:disabled) {
+        transform: translateY(-1px);
+        box-shadow:
+          0 22px 44px -20px rgba(34, 203, 234, .9),
+          inset 0 1px 0 rgba(255, 255, 255, .35);
+      }
+      .btn-primary:hover:not(:disabled)::after { transform: translateX(135%); }
+    }
+    .btn-primary:active:not(:disabled) { transform: translateY(0) scale(.995); }
+    .btn-primary:focus-visible { outline: 2px solid var(--accent-2); outline-offset: 3px; }
+    .btn-primary:disabled { cursor: wait; opacity: .62; transform: none; }
+    .btn-primary.is-loading::before {
+      content: "";
+      flex: none;
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(4, 19, 26, .3);
+      border-top-color: var(--accent-ink);
+      border-radius: 50%;
+      animation: spin .7s linear infinite;
+    }
+
+    .btn-forgot {
+      align-self: center;
+      min-height: 44px;
+      padding: 8px 14px;
+      border: 0;
+      border-radius: 10px;
+      background: none;
+      color: var(--accent);
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: color .2s ease;
+      animation: rise .7s .54s var(--ease) both;
+    }
+    .btn-forgot:hover { color: var(--accent-2); text-decoration: underline; text-underline-offset: 4px; }
+    .btn-forgot:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+    .form-foot {
+      margin: 26px 0 0;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 14px;
+      text-align: center;
+      animation: rise .7s .6s var(--ease) both;
+    }
+    .form-foot a {
+      color: var(--accent);
+      font-weight: 700;
+      text-decoration: none;
+      text-underline-offset: 4px;
+      transition: color .2s ease;
+    }
+    .form-foot a:hover { color: var(--accent-2); text-decoration: underline; }
+    .form-foot a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+    body.is-leaving .auth {
+      opacity: 0;
+      transform: scale(.995);
+      transition: opacity .18s ease, transform .18s ease;
+    }
+
+    /* ---------- Keyframes ---------- */
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fade {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes ambient {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes draw {
+      from { transform: scaleX(0); }
+      to { transform: scaleX(1); }
+    }
+    @keyframes msg-in {
+      from { opacity: 0; transform: translateY(-6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes tremble {
+      0%, 100% { transform: translateX(0); }
+      20% { transform: translateX(-4px); }
+      40% { transform: translateX(4px); }
+      60% { transform: translateX(-3px); }
+      80% { transform: translateX(2px); }
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes float-a {
+      from { transform: translate3d(0, 0, 0); }
+      to { transform: translate3d(28px, -26px, 0); }
+    }
+    @keyframes float-b {
+      from { transform: translate3d(0, 0, 0); }
+      to { transform: translate3d(-24px, 22px, 0); }
+    }
+
+    @media (max-width: 1023px) {
+      .auth { display: block; }
+      .brand-panel { display: none; }
+      .form-panel { min-height: 100svh; }
+      .form-panel::before {
+        width: 460px;
+        height: 460px;
+      }
+    }
+
+    @media (max-width: 639px) {
+      .form-top { padding: 22px 20px 0; }
+      .form-center { align-items: flex-start; padding: 26px 16px 40px; }
+      .form-panel::before { top: 34%; width: 380px; height: 380px; }
+      .form-shell { padding: 26px 20px; border-radius: 20px; }
+      h1 { font-size: 28px; }
+      .form-sub { margin-bottom: 24px; font-size: 14px; }
+      .form-foot { font-size: 13px; }
+      body::before { background: radial-gradient(70vmax 60vmax at 30% 8%, rgba(34, 203, 234, .13), transparent 62%); }
+    }
+
+    @media (max-height: 720px) and (min-width: 1024px) {
+      .brand-panel { padding-top: 32px; padding-bottom: 32px; }
+      .brand-logo-wrap { margin-bottom: 20px; }
+      .form-shell { padding: 26px 32px; }
+      .form-sub { margin-bottom: 20px; }
+      .form { gap: 12px; }
+      .form-foot { margin-top: 18px; padding-top: 14px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .001ms !important;
+        animation-delay: 0ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .001ms !important;
+      }
+      .orb { animation: none !important; }
+      .brand-title em::after { transform: scaleX(1); }
+      body.is-leaving .auth { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Versión visual: conserva textos, formulario y autenticación del sitio. -->
+  <a class="skip" href="#email">Saltar al formulario</a>
+
+  <main class="auth">
+    <aside class="brand-panel">
+      <div class="brand-fx" aria-hidden="true">
+        <span class="orb orb-1"></span>
+        <span class="orb orb-2"></span>
+      </div>
+      <div class="watermark" aria-hidden="true"></div>
+
+      <a class="brand-top" href="https://iskairos.com/" aria-label="ISKAIROS — Inicio">
+        <img src="https://iskairos.com/assets/logo-CtEBM7rT.png" alt="" width="20" height="26" decoding="async">
+        <span>ISKAIROS</span>
+      </a>
+
+      <div class="brand-main">
+        <div class="brand-logo-wrap">
+          <img src="https://iskairos.com/assets/logo-CtEBM7rT.png" alt="" width="72" height="95" fetchpriority="high" decoding="async">
+        </div>
+        <h2 class="brand-title">La pena no <em>factura.</em></h2>
+        <p class="brand-sub">Tus clases, exámenes, herramientas y tu mentor, en un solo lugar.</p>
+      </div>
+    </aside>
+
+    <section class="form-panel" id="login" aria-labelledby="login-title">
+      <div class="form-top">
+        <a class="lockup" href="https://iskairos.com/" aria-label="ISKAIROS — Inicio">
+          <img src="https://iskairos.com/assets/logo-CtEBM7rT.png" alt="" width="20" height="26" decoding="async">
+          <span>ISKAIROS</span>
+        </a>
+      </div>
+
+      <div class="form-center">
+        <div class="form-shell">
+          <span class="form-accent" aria-hidden="true"></span>
+          <h1 id="login-title">Entra a tu app</h1>
+          <p class="form-sub">Usa el mismo correo y contraseña de siempre.</p>
+
+          <form class="form" id="login-form">
+            <label class="field" for="email">
+              <span>Correo</span>
+              <input id="email" name="email" type="email" autocomplete="email" inputmode="email" autocapitalize="none" spellcheck="false">
+            </label>
+
+            <label class="field" for="password">
+              <span>Contraseña</span>
+              <input id="password" name="password" type="password" autocomplete="current-password">
+            </label>
+
+            <div class="msg msg-error" id="login-error" role="alert" hidden></div>
+            <div class="msg msg-ok" id="login-ok" role="status" hidden></div>
+
+            <button class="btn-primary" type="submit"><span>Entrar</span></button>
+            <button class="btn-forgot" type="button">Olvidé mi contraseña</button>
+          </form>
+
+          <p class="form-foot">¿Aún no eres estudiante? <a href="https://iskairos.com/reto">Conoce el Reto</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      var form = document.getElementById('login-form');
+      var email = document.getElementById('email');
+      var password = document.getElementById('password');
+      var errorBox = document.getElementById('login-error');
+      var okBox = document.getElementById('login-ok');
+      var submit = form.querySelector('button[type="submit"]');
+      var submitLabel = submit.querySelector('span');
+      var forgot = form.querySelector('.btn-forgot');
+      var busy = false;
+      var clientPromise = null;
+
+      // Reutiliza el módulo público del sitio para conservar la misma autenticación.
+      var AUTH_MODULE = 'https://iskairos.com/assets/supabase-BuMtJSsQ.js';
+
+      function getClient() {
+        if (!clientPromise) {
+          clientPromise = import(AUTH_MODULE).then(function (mod) {
+            var client = mod.s || mod.supabase || mod.default;
+            if (!client || !client.auth) throw new Error('auth-unavailable');
+            return client;
+          }).catch(function (err) {
+            clientPromise = null;
+            throw err;
+          });
+        }
+        return clientPromise;
+      }
+
+      function showError(message) {
+        okBox.hidden = true;
+        okBox.textContent = '';
+        errorBox.hidden = false;
+        errorBox.textContent = message;
+        errorBox.classList.remove('tremble');
+        void errorBox.offsetWidth;
+        errorBox.classList.add('tremble');
+      }
+
+      function showOk(message) {
+        errorBox.hidden = true;
+        errorBox.textContent = '';
+        okBox.hidden = false;
+        okBox.textContent = message;
+      }
+
+      function setBusy(value) {
+        busy = value;
+        submit.disabled = value;
+        submit.classList.toggle('is-loading', value);
+        submit.setAttribute('aria-busy', value ? 'true' : 'false');
+        submitLabel.textContent = value ? 'Entrando…' : 'Entrar';
+      }
+
+      form.addEventListener('focusin', function () {
+        getClient().catch(function () {});
+      }, { once: true });
+
+      form.addEventListener('submit', async function (event) {
+        event.preventDefault();
+        if (busy) return;
+
+        errorBox.hidden = true;
+        okBox.hidden = true;
+        setBusy(true);
+
+        var signedIn = false;
+        try {
+          var supabase = await getClient();
+          var result = await supabase.auth.signInWithPassword({
+            email: email.value.trim(),
+            password: password.value
+          });
+          if (result.error) {
+            showError('Correo o contraseña incorrectos.');
+            return;
+          }
+          signedIn = true;
+        } catch (err) {
+          showError('Correo o contraseña incorrectos.');
+        } finally {
+          if (!signedIn) setBusy(false);
+        }
+
+        if (!signedIn) return;
+        document.body.classList.add('is-leaving');
+        window.setTimeout(function () {
+          window.location.assign('/app');
+        }, 180);
+      });
+
+      forgot.addEventListener('click', async function () {
+        var value = email.value.trim();
+        if (!value) {
+          showError('Escribe tu correo y vuelve a tocar "Olvidé mi contraseña".');
+          email.focus();
+          return;
+        }
+
+        errorBox.hidden = true;
+        okBox.hidden = true;
+
+        try {
+          var supabase = await getClient();
+          var result = await supabase.auth.resetPasswordForEmail(value, {
+            redirectTo: window.location.origin + '/nueva-clave'
+          });
+          if (result.error) {
+            showError('No pudimos enviar el correo. Intenta de nuevo.');
+            return;
+          }
+          showOk('Te enviamos un correo para crear una nueva contraseña.');
+        } catch (err) {
+          showError('No pudimos enviar el correo. Intenta de nuevo.');
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
